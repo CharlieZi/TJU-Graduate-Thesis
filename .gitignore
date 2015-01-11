@@ -3,7 +3,11 @@
 *.log
 *.out
 *.toc
+<<<<<<< HEAD
 *.lof
 *.lot
 *.gz
 *.pdf
+=======
+*.lof
+>>>>>>> FETCH_HEAD
