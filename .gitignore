@@ -2,3 +2,8 @@
 *.bbl
 *.log
 *.out
+*.toc
+*.lof
+*.lot
+*.gz
+*.pdf
