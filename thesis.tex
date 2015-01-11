@@ -3,67 +3,49 @@
 %%==================================================
 
 % 双面打印
-\documentclass[doctor, macfonts, openright, cs4size]{TJUgraduates} 
-% \documentclass[bachelor, adobefonts, openright, cs4size]{sjtuthesis} 
-% \documentclass[master]{sjtuthesis} 
+\documentclass[master, macfonts, openany, cs4size]{TJUgraduates} 
+% \documentclass[bachelor, adobefonts, openright, cs4size]{TJUgraduates} 
+% \documentclass[master]{TJUgraduates} 
 % \documentclass[%
-%   bachelor|master|doctor,	% 必选项
-%   adobefonts, winfonts  	% 只测试了adobefonts，请使用adobefonts
+%   bachelor|master|doctor 
+%   adobefonts, winfonts  	% 修改 /ctex 中的adobefonts, 改为mac默认中文字体
 %   openany|openright 		% 单面打印，双面打印(默认)
 %   cs4size|c5size 		% 正文字号：小四、五号(默认)
 % ]
 
 \begin{document}
+\include{frontmatter/id}
+\include{frontmatter/cover}
+\include{frontmatter/abstract} %% 摘要
+\include{frontmatter/table}
+\include{frontmatter/symbol} % 主要符号、缩略词对照表
 
-%% 无编号内容：中英文论文封面、授权页
-\include{tex/id}
-\maketitle
-
-\makeenglishtitle
-\makeDeclareOriginal
-\makeDeclareAuthorization
-
-\frontmatter 	% 使用罗马数字对前言编号
-
-%% 摘要
-\include{tex/abstract}
-
-%% 目录、插图目录、表格目录
-\tableofcontents
-\listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
-\listoftables
-\addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
-
-\include{tex/symbol} % 主要符号、缩略词对照表
 
 \mainmatter	% 使用阿拉伯数字对正文编号
 
 %% 正文内容
-\include{tex/chapter01}
-\include{tex/chapter02}
-\include{tex/chapter03}
-\include{tex/conclusion}
+\include{main/chapter01}
+\include{main/chapter02}
+\include{main/chapter03}
+\include{main/conclusion}
 
-\appendix	% 使用英文字母对附录编号，重新定义附录中的公式、图图表编号样式
-\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}	
-\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
-\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 
-%% 附录内容，本科学位论文可以用翻译的文献替代。
-\include{tex/app_log}
-\include{tex/app_eq}
-\include{tex/app_cjk}
+\include{app/appendix}
+\include{app/app_log}
+
+
 
 \backmatter	% 文后无编号部分 
 
 %% 参考资料
 \bibliography{bib/chap1,bib/chap2}
 
+
+
 %% 致谢、发表论文、参与项目、简历
-\include{tex/ack} 	%% 致谢
-\include{tex/pub}	%% 发表论文
-\include{tex/projects}  %% 参与的项目
-% \include{tex/resume}
+\include{backmatter/ack} 	%% 致谢
+\include{backmatter/pub}	%% 发表论文
+\include{backmatter/projects}  %% 参与的项目
+% \include{backmatter/resume}
 
 \end{document}
