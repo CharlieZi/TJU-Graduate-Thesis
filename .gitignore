@@ -1,13 +1,13 @@
+*.bak
+*.fls
 *.aux
-*.bbl
 *.log
+*.lot
 *.out
 *.toc
-<<<<<<< HEAD
+*.blg
+*.bbl
 *.lof
-*.lot
-*.gz
-*.pdf
-=======
-*.lof
->>>>>>> FETCH_HEAD
+*.swp
+*.swo
+*.xdv
