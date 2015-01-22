@@ -12,3 +12,21 @@
 
 这里是全文总结内容。
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.5\linewidth]{figure/placeholder}
+	\bicaption[fig:placeholder]{占位图}{占位图}{Fig}{place holder}
+	\label{fig:placeholder}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\centering
+	\subfigure[]{
+		\includegraphics[width=0.4\linewidth]{figure/placeholder}\label{fig:place-holder-a}}
+	\hspace{1cm}
+	\subfigure[]{
+		\includegraphics[width=0.4\linewidth]{figure/placeholder}\label{fig:place-holder-b}}
+	\bicaption[fig:placeholder]{占位图}{占位图}{Fig}{place holder}
+	\label{fig:placeholder}
+\end{figure}
