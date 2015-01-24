@@ -1,4 +1,4 @@
-´%%==========================
+%%==========================
 %% chapter01.tex for TJU Master Thesis
 %% based on CASthesis
 %% modified by charlie.yaha@gmail.com
@@ -11,10 +11,9 @@
 
 
 \chapter{绪~论}
-\label{chap:introduintroduction}
+
+
 \section{研究背景}
-
-
 
 液压系统是航空航天等产品的重要系统。而液压系统的各类管线，是现代航空航天工业中极为重要的部件，对其可靠性的要求仅次于发动机。
 
@@ -22,17 +21,18 @@
 大型客机的液压系统，是一个多余度、大功率的复杂综合系统，控制着飞机起落架、襟翼、减速板的收放，平尾、副翼、方向舵的操纵，进气锥、辅助进气门的调节等\cite{dingfei2010}。空客的A320，波音的B737都配备了至少3套相互独立的液压\cite{dingfei2010}，多套液压系统相互独立、相互备份，管线密布机身，如图\ref{fig:plane-hose}所示，管线长度一般在机身长度的数倍以上。
 
 
+
+
 \begin{figure}[!htbp]
 	\centering
-	%	\subfigure[起落架]{\includegraphics[width=0.4\textwidth]{figure/chap1/gear}}		\label{fig:plane gear}
-	%	\hspace{1cm}
-	%	\subfigure[飞机管路]{\includegraphics[width=0.5\textwidth]{figure/chap1/Plane}}    \label{fig:plane}
 	\subfigure[机身软管管路（a.软管，b.液压源）]{\includegraphics[width=0.4\textwidth]{figure/chap1/plane-cruit}\label{fig:plane-cruit}}    
 	\hspace{1cm}
 	\subfigure[发动机软管管路（a.软管，b.液压源）]{\includegraphics[width=0.4\textwidth]{figure/chap1/engine-cruit}\label{fig:engine-cruit}}    
-	\bicaption[fig:Distribution of hose assembly]{飞行器液压系统管线分布}{飞行器液压系统管线分布}{Fig}{Distribution of hose assembly in a plane}  
+	\fcaption{飞机液压软管管路}{Cruit system of Hose Assembly}
 	\label{fig:plane-hose}
+	
 \end{figure}
+
 
 
 
@@ -55,8 +55,8 @@
 	\hspace{1cm}
 	\subfigure[a380起落架液压软管]{
 		\includegraphics[width=0.4\textwidth]{figure/chap1/a380-gear}\label{fig:a380-gear}}
-	\bicaption[fig:gear hose cruit]{起落架软管管路}{起落架软管管路}{Fig}{Hydraulic hose cruit of gear}  
-	\label{fig:plane-hose}
+	\fcaption{起落架软管管路}{Hydraulic hose cruit of gear}{}
+	\label{fig:plane-hose-2}
 \end{figure}
 
 
@@ -80,8 +80,8 @@
 	\hspace{1cm}
 	\subfigure[软管失效]{
 		\includegraphics[width=0.5\textwidth]{figure/chap1/burst-hose-2}}
-	\bicaption[fig:hose burst]{软管失效}{软管失效}{Fig}{hose fail}  
-	\label{fig:plane-hose}
+	\fcaption{软管失效}{hose fail}
+	\label{fig:hose fail}
 \end{figure}
 
 
@@ -121,8 +121,8 @@
 	\hspace{0.5cm}
 	\subfigure{
 		\includegraphics[width=0.3\textwidth]{figure/chap1/hose2}}
-	\bicaption[fig:hose burst]{软管组件}{软管组件}{Fig}{Hose Assembly}  
-	\label{fig:hose}
+%	\fcaption{软管组件}{Hose Assembly}  
+%	\label{fig:hose}
 \end{figure}
 
 
@@ -141,16 +141,16 @@
 
 \begin{table}[!htbp]
 	\centering
-	\bicaption[tab:hosepressurelevle]{软管组价压力等级}{软管组价压力等级}{Table}{Hose Assembly Pressure level}
+	\tcaption{软管组价压力等级}{Hose Assembly Pressure level}[]
 	\label{tab:hosepressurelevle}
-	\begin{tabular}{ccc}
+	\begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}}>{\hspace{0.5cm}}ccc}
 		\toprule
 		    &   英制    &  公制  \\ \midrule
 		低压  & $ \le$1000psi  & $ \le$7MPa \\
 		中压  &  1000psi   \textasciitilde  3000psi  & 7MPa   \textasciitilde  21MPa \\
 		高压  &  3000psi   \textasciitilde  4000psi &  21MPa   \textasciitilde  28MPa\\
 		超高压 & $ \ge$4000psi &  $ \ge$28MPa  \\ \bottomrule
-	\end{tabular} 
+	\end{tabular*} 
 \end{table}
 
 根据美国\footnote{SAE AS1946，SAE AS604，SAE AS1339}、欧洲以及国际标准化组织\footnote{ISO1436，ISO3862
@@ -166,15 +166,14 @@
 
 \begin{table}[!htbp]
 	\centering
-	\bicaption[tab:hosefixposition]{不同型号软管组件安装位置}{不同型号软管组件安装位置}{Table}{Position}
-		
-	\begin{tabular}{ccc}
+	\tcaption{不同型号软管组件安装位置}{Position}
+	\begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}}>{\hspace{0.5cm}}ccc}
 		\toprule
 		&    轻型     &     重型     \\ \hline
 		低压 & 汽车刹车、转向传动 &  输运水、气  \\
 		高压 & 飞机起落架、襟翼  & 飞机、船舶液压泵出口 \\ 
 		\bottomrule
-	\end{tabular} 
+	\end{tabular*} 
 \end{table}
 
 %解释表格
@@ -187,7 +186,6 @@
  	 	 
 					
 \section{软管组件行业现状}
-\label{chap:hose-generation}
 
 软管组件的加工生产技术经过几次重大变革，至今为止，已经发展出了3代产品。
 金属增强软管组件是由美国发明并于上世纪60年代开始用于飞机的液压系统，
@@ -200,7 +198,6 @@
 第二代软管组件的最高使用温度已达232\textcelsius，最高工作压力已经达55MPa。
 已经广泛应用于各种类型的飞机和导弹、运载火箭等，例如：F-16、F-22、波音客机等。
 
-
 %第三代
 近年来，航空航天事业飞速发展，对软管组件也提出轻量化的要求，传统钢丝增强软管组件已不能满足航空航天的设计要求。
 为了解决这个问题，美国Titeflex、Eaton及Parker等国际知名公司，已在20世纪80年代，开始了非金属增强软管组件的研究，也就是第三代软管组件。他们纷纷研制推出了各自的非金属增强软管组件产品。目前波音B787就大量使用了Eaton公司的AS1975以及AS4623 Kevlar加强软管组件，满足5000psi（35MPa）工作压力要求。
@@ -212,7 +209,7 @@
 	\hspace{0.5cm}
 	\subfigure{
 		\includegraphics[width=0.5\textwidth]{figure/chap1/kevlar-hose-2}}
-	\bicaption[fig:kevlar-hose]{Kevlar加强软管组件}{Kevlar加强软管组件}{Fig}{Kevlar Reinforced Hose Assembly}  
+%	\fcaption{Kevlar加强软管组件}{Kevlar Reinforced Hose Assembly}  
 	\label{fig:kevlarhose}
 \end{figure}
 
@@ -227,8 +224,8 @@
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{figure/chap1/helical-strands}
-	\bicaption[fig:hose burst]{软管组件}{软管组件}{Fig}{Hose Assembly}  
-	\label{fig:hose}
+%	\fcaption[fig:hose burst]{软管组件}{软管组件}{Fig}{Hose Assembly}  
+%	\label{fig:hose}
 \end{figure}
 螺旋钢绞线中的钢丝纤维直径一般较大，因而不能忽略钢丝的扭转刚度。
 在这种理论体系下，讨论钢丝加强层的力学性能时，往往更加关注钢丝本身的力学行为。这种钢绞线结构（Helical wound assembly）由于结构的复杂性，形成了一套独特的基于实验和经验的理论体系\cite{Cardou1997}。虽然有学者尝试用弹性力学推导理论解\cite{phillips1972,machida1973}，但主要仍以经验公式为主。
