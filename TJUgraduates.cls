@@ -66,7 +66,6 @@
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
-\RequirePackage{titlureure }
 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.

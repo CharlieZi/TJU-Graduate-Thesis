@@ -174,13 +174,85 @@
 
 \section{软管组件加强层参数}
 \label{sec:parameter}
-
-
-
 \subsection{编织角}
 
 
+
+编织角针对编织加强层，缠绕角针对缠绕编织层。
+编织角指的是编织层中，纤维偏离软管轴向的角度；而缠绕角定义相同，因此本文统一称为编织角，指代加强层中纤维布置的角度（Lay Angle）。
+
+\begin{figure*}[!htb]
+\centering
+\subfigure[]{\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle}
+	\label{fig:braid-angle}}
+\subfigure[]{\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle-2}
+\label{fig:braid-angle-2}}
+\subfigure[]{\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle-3}
+\label{fig:braid-angle-3}}
+\fcaption{编织角及特征单元}{Braid angle and representive cell}
+\label{fig:braid angle and represtive cell}
+\end{figure*}
+
+
+编织角是设计加强层时最重要的参数，以此确定编织机编制的螺距。
+目前软管组件的编织层一般将编织角设定为平衡角。
+
+
+
+
+
 \subsection{编织密度}
+
+缠绕层中的加强纤维可以相互紧靠，而编织层中每股纤维中间会留下空隙，如如图\ref{fig:braid-angle-2}所示，为编织层的特征单元。特征单元在软管环向包含2股纤维，则特征单元的宽度为:
+
+\begin{equation}
+\frac{{\pi D}}{{{N_S}/2}} = \frac{{2\pi D}}{{{N_S}}}
+\end{equation}
+
+则特征单元中ABC区域的面积$ S_{ABC} $为：
+\begin{equation}
+\frac{1}{2}\left( {\frac{{2\pi D}}{{{N_S}}}} \right)\left( {\frac{{2\pi D}}{{2{N_S}\tan \alpha }}} \right) = {\frac{{{\pi ^2}D}}{{{N_C}^2\tan \alpha }}^2}
+\end{equation}
+
+
+空隙DEF区域面积$ S_{DEF} $为：
+\begin{equation}
+\frac{1}{2}{\left( {\frac{{2\pi D}}{{{N_S}}} - 2\frac{W}{{2\cos \alpha }}} \right)^2}\frac{1}{{\tan \alpha }}
+\end{equation}
+
+
+其中，$ W = {N_W}\phi  $，为一股纤维的宽度。
+则纤维覆盖的比例为$ 1 - \frac{{{S_{ABC}}}}{{{S_{DEF}}}} $
+
+
+\begin{equation}
+\xi_{lateral} = 1 - {\left( {1 - \frac{{{N_C}{N_W}\phi }}{{2\pi D\cos \alpha }}} \right)^2}
+\end{equation}
+
+这个比例$ \xi_{lateral}  $一般称为编织层覆盖系数（cover factor），也成为侧向编织密度，用于描述编织层编织的紧密程度。
+
+
+
+若编织层采用金属纤维，纤维不能填满编织层占据的空间，进而有了截面编织密度$ \xi_{section} $的概念。编织层所有纤维的截面面积wei为：
+
+\begin{equation}
+{N_S}{N_W}\frac{{\pi {\phi ^2}}}{4}
+\end{equation}
+
+编织层占据的空间的截面积为：
+
+\begin{equation}
+\frac{\pi }{4}\cdot({D^2} - {D_{tube}}^2)
+\end{equation}
+
+其中，$ \phi $为但跟纤维的直径，$ D $为编织层外径，$ D_{tube} $为内管覆盖编织后的外径。由于编织机在编织过程中内管会被压缩，一般很难确定编织完成后得内管的外径；单层编织层理论上相当于两层金属纤维，但编织层的厚度一般大于两层。不妨设编织层的厚度为$ \tau\phi $，其中$ \tau $为编织层厚度与单根金属纤维比值，一般$ \tau  \in \left[ {2,5} \right]$。
+
+
+\begin{equation}
+\xi_{section}= \frac{{{N_S}{N_W}\frac{{{\phi ^2}}}{{\cos \alpha }}}}{{{D^2} - {{\left( {D - \tau \phi } \right)}^2}}} = \frac{{{N_S}{N_W}\phi }}{{2\tau  \cdot \cos \alpha (D - \frac{\tau }{2}\phi )}}
+\end{equation}
+
+由于$ \tau $值很难确定，工业中一般选择将侧向编织密度$ \xi_{lateral} $作为定义软管组件编织层编织密度的方法。
 
 
 \subsection{编织层数}
