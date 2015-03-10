@@ -1,8 +1,8 @@
-%==================================================
-%% TJUgraduates.cls for SJTU Master Thesis
+ %==================================================
+%% TJUgraduates.cls for TJU Master Thesis
 %% based on CASthesis.cls -- http://www.ctex.org/PackageCASthesis
 %% Hosted on https://github.com/weijianwen/tju-thesis-template-latex
-%% SJTU LaTeX Forum https://bbs.tju.edu.cn/bbsdoc,board,TeX_LaTeX.html
+%% TJU LaTeX Forum https://bbs.tju.edu.cn/bbsdoc,board,TeX_LaTeX.html
 %% Encoding: UTF-8
 %%==================================================
 
@@ -59,14 +59,14 @@
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
 \RequirePackage{ccaption}
-\RequirePackage[sort&compress,numbers]{natbib}
+\RequirePackage[super,square,sort&compress,numbers]{natbib}
 \RequirePackage{xcolor}
 \RequirePackage{marvosym}
 \RequirePackage{wasysym}
 \RequirePackage{listings}
 \RequirePackage[xetex]{hyperref}
 \RequirePackage{enumitem}
-
+\RequirePackage{setspace} 
 %==========
 % Segment 2. Define general-purpose LaTeX commands.
 %==========
@@ -76,6 +76,10 @@
 
 % A new column type
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+\newcommand\hangju[1]{\setlength{\baselineskip}{#1\baselineskip}}
+\newcommand\hangjut[1]{\def\arraystretch{#1}}
+
 
 % upper math letter
 \newcommand{\me}{\mathrm{e}} 
@@ -118,20 +122,23 @@
 
 % Set the mainfont
 \setmainfont{Times New Roman}
+	 \newfontfamily{\arial}{Arial}
+
 
 % Page Layout
-\oddsidemargin 1.5 true cm
-\textheight 21 true cm
+\oddsidemargin 1 true cm
+\textheight 24 true cm
 \textwidth 14.5 true cm
-\headheight 15pt
+\topmargin 12pt
+\headheight 12pt
 \parskip 0.5ex plus 0.25ex minus 0.25ex
-\addtolength{\voffset}{-0.5cm} %% 上边距
+\addtolength{\voffset}{-39.3pt} %% 上边距
 \if@openright
   \evensidemargin 0 true cm
 \else
-  \evensidemargin 1.5 true cm
+  \evensidemargin 1 true cm
 \fi
-%% 行距缩放因子(x倍字号)
+%% 行距缩放因子(x倍字号) 
 \renewcommand{\baselinestretch}{1.3}
 
 % bullets in the item
@@ -143,8 +150,8 @@
 
 % Caption setting in ccaption pacakge
 \captiondelim{\ }
-\captionnamefont{\kaishu\small}
-\captiontitlefont{\kaishu\small}
+\captionnamefont{\songti\zihao{5}}
+\captiontitlefont{\songti\zihao{5}}
 
 % Floating parameters
 \renewcommand{\textfraction}{0.15}
@@ -156,7 +163,8 @@
 \renewcommand{\theequation}{\arabic{chapter}--\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}--\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}--\arabic{table}}
-
+   
+\renewcommand{\p@subfigure}{\arabic{chapter}--\arabic{figure}} 
 % Title
 \renewcommand{\lstlistingname}{\tju@value@listingname} %% 重命名Listings标题头
 
@@ -190,6 +198,11 @@
   extendedchars=false,columns=flexible,mathescape=true
   numbersep=-1em
 }
+
+
+%  表格断行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
 
 %% setting hyperref package
 \hypersetup{
@@ -233,47 +246,67 @@
 \renewcommand\title[2][\tju@value@title]{%
   \def\tju@value@title{#2}
   \def\tju@value@titlemark{\MakeUppercase{#1}}}
+\newcommand\projectsource[1]{\def\tju@value@projectsource{#1}}
 \renewcommand\author[1]{\def\tju@value@author{#1}}
 \newcommand\advisor[1]{\def\tju@value@advisor{#1}}
+\newcommand\viceadvisor[1]{\def\tju@value@viceadvisor{#1}}
 \newcommand\advisorinstitute[1]{\def\tju@value@advisorinstitute{#1}}
 \newcommand\major[1]{\def\tju@value@major{#1}}
 \newcommand\submitdate[1]{\def\tju@value@submitdate{#1}}
 \newcommand\defenddate[1]{\def\tju@value@defenddate{#1}}
 \newcommand\institute[1]{\def\tju@value@institute{#1}}
 \newcommand\chairman[1]{\def\tju@value@chairman{#1}}
+\newcommand\faculty[1]{\def\tju@value@faculty{#1}}
+\newcommand\discipline[1]{\def\tju@value@discipline{#1}}
 
-% “绘制”SJTU中文标题页
+
+% “绘制”TJU中文标题页
 \renewcommand\maketitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
-  \begin{center}
-      
-\songti\zihao{-3}\tju@label@statement
+%  logo +  学位
+  \begin{center}     
+	\begin{figure}
+		\centering
+		\includegraphics[width=10cm, height=2.6cm]{tju-logo}
+	\end{figure}
+	{\lishu \zihao{2}  \tju@label@statement}
+	     
+    \vskip \stretch{1}
+    
+       {\hangju{1.5} \bf\heiti\zihao{2} \tju@value@title}
+       
+    \vskip 20pt
+    
+    {\songti\zihao{-4} \tju@value@projectsource}
+    
+    \vskip \stretch{1}
 
-    \vskip \stretch{1}
-       {\heiti\zihao{3} \tju@value@title}
-    \vskip \stretch{1}
-    {\fangsong\zihao{4}}
+    
     \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
-    \begin{tabular}{lc}
-      \heiti\tju@label@author &\songti
-      \tjuunderline[150pt]{\tju@value@author}
+%4号    
+    {
+    	\hangjut{1.1} \fangsong\zihao{3}
+    \begin{tabular}{lll}
+      \fangsong\tju@label@author &：~&\fangsong\tju@value@author
     \\
-      \heiti\tju@label@studentnumber &\songti
-      \tjuunderline[150pt]{\tju@value@studentnumber}
+      \fangsong\tju@label@studentnumber &：&\fangsong\tju@value@studentnumber
     \\
-      \heiti\tju@label@advisor &\songti
-      \tjuunderline[150pt]{\tju@value@advisor}
+      \fangsong\tju@label@faculty&：~&\fangsong \tju@value@faculty
+    \\      
+      \fangsong\tju@label@discipline&：~&\fangsong \tju@value@discipline
+    \\   
+      \fangsong\tju@label@major&：~&\fangsong \tju@value@major
+    \\   
+      \fangsong\tju@label@advisor&：~&\fangsong \tju@value@advisor
     \\  
-      \heiti\tju@label@major &\songti
-      \tjuunderline[150pt]{\tju@value@major}
-    \\  
-      \heiti\tju@label@defenddate &\songti
-      \tjuunderline[150pt]{\tju@value@defenddate}
+      \fangsong\tju@label@viceadvisor&：~&\fangsong \tju@value@viceadvisor
     \end{tabular}
+	}
+     \vskip \stretch{1} 
+      {\songti\zihao{3} \tju@value@defenddate}
   \end{center}
-  \vskip \stretch{0.5}
+      \def\arraystretch{1.3}
   \clearpage
   \if@openright
     \cleardoublepage
@@ -287,31 +320,77 @@
 \newcommand\englishtitle[1]{\def\tju@value@englishtitle{#1}}
 \newcommand\englishauthor[1]{\def\tju@value@englishauthor{#1}}
 \newcommand\englishadvisor[1]{\def\tju@value@englishadvisor{#1}}
+\newcommand\englishviceadvisor[1]{\def\tju@value@englishviceadvisor{#1}}
 \newcommand\englishschool[1]{\def\tju@value@englishschool{#1}}
 \newcommand\englishinstitute[1]{\def\tju@value@englishinstitute{#1}}
 \newcommand\englishdate[1]{\def\tju@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\tju@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\tju@value@englishmajor{#1}}
+
+
+\newcommand\englishfaculty[1]{\def\tju@value@englishfaculty{#1}}
+\newcommand\englishdiscipline[1]{\def\tju@value@englishdiscipline{#1}}
+
+
+
+
 % "绘制"英文标题页
 \newcommand\makeenglishtitle[1]{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
+  		\begin{figure}
+  			\centering
+  			\includegraphics[width=10cm, height=2.6cm]{tju-logo}
+  		\end{figure}
+  		
     {\normalfont\zihao{4} \tju@label@englishstatement}
     \vspace*{20pt}
     \vskip\stretch{1}
-     {\zihao{-1} \tju@value@englishtitle}
+    
+
+
+     {\arial\zihao{-2}
+     	\textbf{\tju@value@englishtitle}}
+     
+     
     \vskip \stretch{1}
-      {\normalfont\zihao{4} \tju@value@englishauthor}
-    \vskip \stretch{1}
-      {\normalfont\zihao{4} \tju@label@englishadvisor}
-    \vskip 3pt
-      {\normalfont\zihao{4} \tju@value@englishadvisor}
-    \vskip \stretch{2}
-      \normalfont\normalsize \tju@value@englishinstitute
+    
+    
+    {
+    	\hangjut{1}    	\zihao{3}
+    \begin{tabular}{l}
+
+    	\tju@label@englishauthor：\tju@value@englishauthor	\\
+    	\tju@label@englishstudentnumber ：\tju@value@studentnumber
+    	\\
+    	\tju@label@englishfaculty：\tju@value@englishfaculty\\      
+    	\tju@label@englishdiscipline：\tju@value@englishdiscipline\\   
+    	\tju@label@englishmajor： \tju@value@englishmajor\\   
+
+\hspace{-6pt}\begin{tabular}{ll}
+		\tju@label@englishadvisor ：&\tju@value@englishadvisor \\ 
+  &\tju@value@englishviceadvisor \\  
+\end{tabular} \\
+  
+		
+%	    	\tju@label@englishadvisor&\\  
+%													& \\
+%    			}
+    
+    \end{tabular}
+	}
+    \vskip \stretch{1}       
+      
+      
+      
     \vskip 30pt
-      \normalfont\normalsize \tju@value@englishdate
+      {\zihao{3} \tju@value@englishdate}
     \vskip 20pt
+    \hangjut{1.3}
+    
+    
+    
   \end{center}
   \clearpage
   \if@openright
@@ -325,44 +404,60 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \tju@value@school}\\
-  {\bf\zihao{3} \tju@label@original}
+  	\vskip 80pt
+  	{\textbf{\zihao{-2} \tju@label@original}}
   \end{center}
   \vskip 10pt
-  {\zihao{-4}\tju@label@originalcontent}
-  \vskip 60pt
-  \hspace{13em}\tju@label@authorsign\hrulefill\hspace{1.5em}
-  \vskip 15pt
-  \hspace{16em}\tju@label@originalDate\hspace{1em}
+  {
+  	\zihao{4} 
+  	\hangju{1.25}
+  	\tju@label@originalcontent
+  }
+  \vskip 160pt
+  {
+  	\zihao{4}
+  	\hspace{0.4\textwidth}	  \tju@label@authorsign\hspace{3em}
+  	\vskip 15pt
+  	\hspace{0.6\textwidth}	  \tju@label@originalDate
+  }
   \clearpage
   \if@openright
-    \thispagestyle{empty}
-    \cleardoublepage
+  \thispagestyle{empty}
+  \cleardoublepage
   \fi
 }
-
 
 % 授权声明
 \newcommand\makeDeclareAuthorization{%
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \tju@value@school}\\
-  {\bf\zihao{3} \tju@label@authorization}
+    \vskip 80pt
+  {\textbf{\zihao{-2} \tju@label@authorization}}
   \end{center}
   \vskip 10pt
-  {\zihao{-4} \tju@label@authorizationcontent}
-  \vskip 60pt
-  
-  \tju@label@authorsign\hrulefill\hspace{3em}\tju@label@Supervisorsign\hrulefill
-  \vskip 15pt
-  \tju@label@originalDate\hfill\hspace{3em}\tju@label@originalDate
+  {
+  	\zihao{4} 
+  	\hangju{1.25}
+  	\tju@label@authorizationcontent
+  }
+	\vskip 160pt
+   {
+  	\zihao{4}
+	\hspace{0.4\textwidth}	  \tju@label@authorsign\hspace{3em}
+	    \vskip 15pt
+	\hspace{0.6\textwidth}	  \tju@label@originalDate
+	}
   \clearpage
   \if@openright
     \thispagestyle{empty}
     \cleardoublepage
   \fi
 }
+
+
+
+
 
 % 根据学位论文类型、单双面打印设置页眉页脚类型
 \pagestyle{fancy}
@@ -370,52 +465,53 @@
 
 \iftju@bachelor
   % 本科学位论文正文页眉页脚
-  \fancyhead[LO, RE]{\small {\it \includegraphics[width=0.22\textwidth]{tjubanner}}}
-  \fancyhead[RO, LE]{\small {\it \tju@value@titlemark}}
+  \fancyhead[LO, RE]{}
+  \fancyhead[RO, LE]{\small { \tju@value@titlemark}}
   \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
   % 本科学位论文开章页页眉页脚，双面打印时只是交换左右页眉
   \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
     \fancyhf{}%
-    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{tjubanner}}}
-    \fancyhead[R]{\small {\it \tju@value@titlemark}}
+    \fancyhead[L]{\small { \includegraphics[width=0.22\textwidth]{tjubanner}}}
+    \fancyhead[R]{\small { \tju@value@titlemark}}
     \fancyfoot[C]{\small{}第~{\bf\thepage}~页\,{}共~{\bf\pageref{LastPage}}~页}
    }
 \else
   % 研究生学位论文正文页眉页脚，针对openright和openany单独设置
   \if@openright
-    \fancyhead[LO, RE]{\small {\it\tju@value@school\tju@value@degree\tju@label@thesis}}
-    \fancyhead[RO]{\small {\it\leftmark}}
-    \fancyhead[LE]{\small {\it\tju@value@titlemark}}
-    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    \fancyhead[LO, RE]{\small {\tju@value@school     ~    \tju@value@degree\tju@label@thesis}}
+    \fancyhead[RO]{\small {\leftmark}}
+    \fancyhead[LE]{\small {\tju@value@titlemark}}
+    \fancyfoot[C]{\small {\thepage}}
     % 研究生学位论文开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
-      \fancyhead[LO,RE]{\small {\it\tju@value@school\tju@value@degree\tju@label@thesis}}
-      \fancyhead[RO]{\small {\it\leftmark}}
-      \fancyhead[LE]{\small {\it\tju@value@titlemark}}
-      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+      \fancyhead[LO,RE]{\small {\tju@value@school\tju@value@degree\tju@label@thesis}}
+      \fancyhead[RO]{\small {\leftmark}}
+      \fancyhead[LE]{\small {\tju@value@titlemark}}
+      \fancyfoot[C]{\small {\thepage}}
     }
   \else
-    \fancyhead[L]{\small {\it\tju@value@school\tju@value@degree\tju@label@thesis}}
-    \fancyhead[R]{\small {\it\leftmark}}
-    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    \fancyhead[LO]{\small {\tju@value@school   ~     \tju@value@degree\tju@label@thesis}}
+    \fancyhead[RE]{\small {\leftmark}}
+    \fancyfoot[C]{\small {\thepage}}
     % 研究生学位论文开章页页眉页脚
     \fancypagestyle{plain} {
       \fancyhf{}
-      \fancyhead[L]{\small {\it\tju@value@school\tju@value@degree\tju@label@thesis}}
-      \fancyhead[R]{\small {\it\leftmark}}
-      % \fancyhead[L]{\small {\it\tju@value@titlemark}}
-      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+      \fancyhead[L]{
+      	\small {\tju@value@school\tju@value@degree\tju@label@thesis}}
+      \fancyhead[R]{\small {\leftmark}}
+      % \fancyhead[L]{\small {\tju@value@titlemark}}
+      \fancyfoot[C]{\small {\thepage}}
     }
   \fi
 \fi
 
 
 % 中英文摘要
-\newenvironment{abstract}{\chapter*{\tju@value@title\vskip 20pt\tju@label@abstract}\markboth{\tju@label@abstract}{}}{}
-\newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\large \tju@label@keywords} #1}
-\newenvironment{englishabstract}{\chapter*{\tju@value@englishtitle\vskip 20pt\bfseries \tju@label@englishabstract}\markboth{\tju@label@englishabstract}{}}{}
-\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\large \tju@label@englishkeywords} #1}
+\newenvironment{abstract}{\chapter*{\tju@label@abstract}\markboth{\tju@label@abstract}{}}{}
+\newcommand\keywords[1]{\vspace{2ex}\noindent{\bf\zihao{-4} \tju@label@keywords} #1}
+\newenvironment{englishabstract}{\chapter*{\bfseries \tju@label@englishabstract}\markboth{\tju@label@englishabstract}{}}{}
+\newcommand\englishkeywords[1]{\vspace{2ex}\noindent{\bf\zihao{-4} \tju@label@englishkeywords} #1}
 
 \renewcommand\tableofcontents{%
   \chapter*{\contentsname}
@@ -426,39 +522,47 @@
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
 
 % 参考文献环境
+
+
 \renewenvironment{thebibliography}[1]
-     {\chapter{\bibname}%
+     {
+     	\chapter{\bibname}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
+      	\list{\@biblabel{\@arabic\c@enumiv}}
+      %
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
             \advance\leftmargin\labelsep
             \@openbib@code
+            \normalsize\setlength{\baselineskip}{16pt}
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            }%
       \sloppy
-      \clubpenalty4000
+	  \clubpenalty4000
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
       \sfcode`\.\@m}
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
+	      \endlist}
 
     
 \newenvironment{publications}[1]
      {\chapter{\tju@label@publications}%
       \@mkboth{\MakeUppercase\tju@label@publications}
               {\MakeUppercase\tju@label@publications}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
+      {
+      	\list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
             \advance\leftmargin\labelsep
             \@openbib@code
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}
+        }%
       \sloppy
       \clubpenalty4000
       \@clubpenalty \clubpenalty
@@ -472,7 +576,7 @@
      {\chapter{\tju@label@projects}%
       \@mkboth{\MakeUppercase\tju@label@projects}
               {\MakeUppercase\tju@label@projects}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
+	      \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
             \advance\leftmargin\labelsep

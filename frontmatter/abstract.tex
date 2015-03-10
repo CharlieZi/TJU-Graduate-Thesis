@@ -8,20 +8,74 @@
 %%==================================================
 
 \begin{abstract}
-软管组件
+随着我国航空航天事业的蓬勃发展，软管组件作为液压系统中的重要元件，其设计生产水平的要求也迅速提高。软管组件一般采用金属纤维编织的形式，而最新一代非金属纤维编织加强的软管也已在国外先进机型广泛使用。本研究针对这种纤维编织的加强层开展了研究，深入分析了这类结构的整体力学性能，以及纤维间的细观力学行为对编织加强层性能的影响。
 
-  \keywords{\large 
+研究思路主要基于Hachami  2011年提出的金属编织层本构理论，因为该理论能够有效的结合加强层理论体系中的基于“钢绞线理论”的方法以及基于复合材料的方法。
+
+研究过程中，以及拉伸实验的研究方法，对不同尺寸金属编织软管进行了拉伸实验。发现金属纤维编织层在拉伸时会出现强烈的结构非线性，而该理论不能在非线性段与实验结果相吻合。针对这种情况，提出了一系列修正该理论的方法：
+
+1.将金属纤维间交叠产生的接触等效地转化为“修正基体”(Modified Matrix Method)，独立于金属纤维自身产生的刚度，对特征单元的刚度矩阵进行了补充，使其能够满足三维有限元计算的需要。
+
+2.对Hachami 模型编织角理论部分进行了修正，还提出了编织角加速系数$ k $的概念，并对其物理意义进行了讨论。
+
+3.Hachami 模型中“特征单元”并没有考虑编织层中纤维的上下起伏，导致模型偏刚，影响到内压荷载的计算结果。考虑纤维的空间取向，利用弯曲纤维模型的简化方法对特征单元的刚度矩阵进行了修正。
+
+本研究的创新点主要有：
+1.新的研究对象。尽管软管组件的纤维编织加强层已出现超过半个世纪，其指导设计的理论仍然是简单“薄壁圆柱”的受力平衡，经验公式以及实验；区别普通的纤维加强符合材料，编织加强层没有树脂相，是一种柔性的、表现出结构非线性力学行为的结构。
+
+2.编织加强层非线性段的力学行为分析。由于这种结构的复杂性，以往无论基于解析还是数值的分析方法，较少有进入到编织层发生大变形，产生较大非线性的力学行为阶段的。
+
+3.修正刚度的方法。许多复合材料力学常见的修正方法第一次被引进编织加强层的理论体系中。而以往的编织层理论都是过度简化，不能考虑纤维间复杂相互关系的。
+
+4.仿真内压爆破的方法。内压爆破试验是设计编制加强层 的核心试验，仿真内压荷载需要主要是为了确定内压荷载与加强层纤维应力的关系，也需要一套可行的强度理论。基于准静态的仿真，结合材料力学中突加荷载理论，提出了一套可以准确仿真内压爆破试验的方法。
+
+  \keywords{\zihao{-4} 
   	编织 \quad 
   	软管 \quad 
-  	接头}
+  	接头\quad 
+  	拉伸实验\quad 
+  	修正基体\quad 
+  	复合材料\quad 
+  	纤维\quad 
+  	仿真\quad 
+  	爆破试验\quad 
+  	}
 \end{abstract}
 
 \begin{englishabstract}
-hose assembly
+
+Flexible hose assembly has always been one of the most vital parts within the hydraulic system of the aircrafts, which are used in industry for power transmission in steering, drive and brake systems and for fluid transport. Such hoses must be tight, flexible, and resistant against high inside pressure. Reinforcement layers bear the most pressure load, commonly formed with braided or helical-wounded metal wires and composite fibers.
+
+The purpose of this work is to develop a realistic numerical simulation model for different types of high-pressure hydraulic hoses. The goals of this research are realistic prediction of the deformation and stress response under service loads, determination of the bursting pressure. The model proposed by Hachemi in 2011 is chosen as the base theory for the work, since it is regarded as an mixture of two major branches of the current hose theory, and focusing on the macro mechanical behavior of braid reinforcement layers in the form of tubes.
+
+It has been discern during the research that Hachemi's theory is not keeping up with our experimental results which shows far more non-linearity than the theory predict.
+Several modifications and developments to the theory has been put forward, in order to match the non-linearity, by accounting for the interactions between the metal wire of composite fibers.
 
 
 
-  \englishkeywords{\large 
+
+\textbf{main jobs:}
+\begin{compactenum}
+	\item  introduced a “modifying matrix”, from composites mechanics, to detach inter-wire contacts from wire elongation. 
+	
+	\item  modified the representative unit cell  and  also proposed a hypothesis opposite to Hachemi’s one: the braid angle decreased linearly, applied displacement load with constant loading rate, rather than locked at a certain degree. 
+	\item  we introduce a modification coefficient , accelerating the decrease of braid angle to match the nonlinearity in force-displacement curve. Lateral contact is considered to be the factor of excessively decreased braid angle when the calculated curve perfectly meet the experimental one.
+
+\end{compactenum}
+
+\textbf{Innovations:}
+\begin{compactenum}
+	\item Introduce a relatively new subject. Although these hoses have been in production for over a hundred years, most information concerning their usage, ratings, and design have been empirical in nature or based solely on equilibrium considerations of inextensible reinforcement.
+	\item Few research has been done in the field of nonlinear behavior of the braid reinforcement. Methods commonly used in composite mechanics are introduced for the first time to take  forms of nonlinear material behavior into account.
+	\item A numerical simulation of hose under burst pressure load has been done,  helping to determined the failure criteria of fiber or metal wire.
+
+
+
+\end{compactenum}
+
+
+
+  \englishkeywords{\zihao{-4}  
   	hose assembly, 
   	PTFE, 
   	fiber,

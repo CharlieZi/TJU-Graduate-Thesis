@@ -3,103 +3,274 @@
 %% Encoding: UTF-8
 %%==================================================
 
-\chapter{软管组件加强层理论发展综述}
+\chapter{纤维编织层基本理论及有限元仿真方法}
 
 
 \section{引~言}
 
 
-%目前对金属编织加强软管的研究，多见于汽车工业中的中刹车管[2]、转向传动管[3]、空调管[4] 等。
+e\hacite 的理论模型正如第一章综述中介绍的，将加强层理论中的钢绞线理论，与复合材料的“特征单元”的研究思路结合。钢绞线理论本身就是为了加强层的大变形而被提出的，但对于编织加强层来说，该理论过度简化，编织结构的微结构特征，包括纤维的形状、曲线、分布等。引入“特征单元”后，就能很好的解决这个问题，同时相对复合材料的理论，能更容易地解决编织层“结构非线性”的问题。
 
-软管组件作为一种上世纪中叶，就开始广泛使用的重要工业构件，
-事实上，对其的研究一直以实验、实用为主，没有形成一套通用完整的体系。图\ref{fig:hose-system-theories}描述了软管组件的理论路线和分支。
+可以理解为，\ha 理论模型是一种分析编织层微观结构，通过特征单元平均化（Homogenization），在宏观上能够反映编织层非线性力学性能的理论模型。事实上，\ha 并未深入挖掘该模型，提供的拉伸实验与仿真结构并不能在非线性段吻合。从仿真的角度来说，该模型不能直接应用于内压工况。
 
-\begin{figure}[!htbp]
+第二章详细介绍了软管组件的结构及重要参数，本章将 首先介绍\ha  的编织加强层理论，然后提出适用于该理论的有限元仿真方法。数值仿真的结果能结合实验，验证得到的本构模型是否合理。因此，对有限元建模的方法研究，也是本章的重内容之一。
+
+
+
+\section{基本假设}
+在对编织结构进行理论分析之前，首先需要明确几个基本的假设：
+
+\begin{compactenum}[\bf 假设1  ]
+	\item 编织层加强层中，纤维等周期均匀的分布在编织层所占据的空间中，即编织机编织过程稳定可靠，编织层个处得编织密度、编织角等参数保持一致；
+	\item 编织层中的纤维不考虑由于相互接触挤压造成的直径变化；
+	\item 纤维间间不发生相对滑动，编织角发生变化时，$ +\alpha$  、$-\alpha $两个方向的钢丝只绕着节点转动，节点如图\ref{fig:braid-angle-chap3-1}所示。
+\end{compactenum}
+
+实际上，编织加强层的工艺控制是比较困难的，这里假设编织层均匀，是采用“特征单元”分析的基础；不考虑纤维相对挤压的形变是为了简化模型分析的发杂程度；编织较为紧密时，以及纤维上下穿行的相互限制，纤维延纤维轴向滑动是很困难的。如图\ref{fig:hypothesis}所示，编织层拉伸后涂黑处仍能保持原来的特征，表明纤维间没有发生相对滑动。
+
+	
+	\begin{figure}[!htp]
 \centering
-\includegraphics[width=0.7\linewidth]{figure/chap3/理论体系}
-	\fcaption{软管组件理论体系}{Hose Assembly Theory Branches}
-	\label{fig:hose-system-theories}
+\subfigure{
+	\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle}
+	}
+\subfigure{
+	\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle-2}
+	}
+\subfigure{
+	\includegraphics[height=0.2\textheight]{figure/chap2/braid-angle-3}
+	}
+\fcaption{编织角的定义}{Definition of braid angle}
+\label{fig:braid-angle-chap3-1}
 \end{figure}
 
-软管组件的理论与研究首先分为两个对象:
-\begin{inparaenum}[1).]
-	\item 接头
-	\item 加强层。
-\end{inparaenum}
-本文的研究主要针对加强层，这里不对软管组件的连接技术进行阐述。而加强层包含了缠绕、编织两种形式，又包括了金属纤维、非金属纤维两种材料，理论界并没有明确和统一的认识，而是基于各自不同的理论之上。
-
-加强层的理论研究成果，主要是建立在三个理论体系之上的，包括了
-\begin{inparaenum}[1).]
-	\item 钢绞线理论
-	\item 复合材料力学
-	\item 连续介质力学
-\end{inparaenum}
-
-
-
-\section{理论分支概述}
-钢绞线理论，来源于悬索、电缆等结构。钢绞线理论应用于加强层的力学分析，有两个主要的分支\cite{Evans2002}：
-\begin{inparaenum}[1).]
-	\item 加强层含量较低，橡胶管起主要作用的软管，由\citeauthor{Kuipers1989}等人[6,7]提出并完善，适用于帘线加强的软管；
-	\item 加强层主要承力的软管，主要研究的是高密度钢丝缠绕加强层。
-\end{inparaenum}
-这套理论体系成熟与上世纪90年代初，适用于金属纤维的缠绕层，编织层一般作为缠绕层的一种扭转为0的特殊情况。前文提到的第一代、第二代软管组件一般是以这套理论指导设计的。
-
-随着第三代非金属加强软管组件的大量使用，近20年来，对编织加强结构的研究主要集中在复合材料编织。复合材料纤维编织的与金属纤维编织的传力机制差别非常明显[8]，研究方法的也有所区别：钢绞线理论一般以钢丝为载体；复合材料一般采用特征元法作为力学分析的对象。复合材料理论中有大量简化编织结构的理论，许多学者选择其中适合软管加强层的理论开展了工作
-
-
-
-也有学者尝试用连续介质力学的基本理论推导编织层的本构，\citeauthor{Horgan2005}\cite{Horgan2005} 提出了纤维加强材料的应变能密度函数，
-国内学者计算了编织结构强度与突加荷载的情况\cite{2009b}。
-
-但是，主流的研究办法还是结合实验，提出能够反映加强层力学行为的有限元模型。\citeauthor{Wijaya2012}\cite{Wijaya2012}对包含软管各层材料及编织层的试件进行了压缩实验，认为金属编织层的应力应变关系是线性的，在软管整体动态特性的研究中取得了较好的效果。\citeauthor{Cho2005}\cite{Cho2005}研究了编织层在扣压安装接头中的力学行为，结合压缩实验提出了弹塑性的本构模型，\citeauthor{Rattensperger2003}\cite{Rattensperger2003}同样针对压缩的过程，编织层厚度方向引入一组等效非线性弹簧，表征金属纤维间相互作用。
-
-
-
-\section{基于钢绞线理论的研究}
-
-
-%stepI hruska 
-\citeauthor{hruska1951calculation}\cite{hruska1951calculation,hruska1952radial,hruska1953tangential}分析了钢绞线结构中一层钢丝的轴向、切向以及径向的应力。钢绞线中一层钢丝实际上就是一层螺旋缠绕结构，也被用于早期设计软管组件缠绕层的参考依据。而其理论并没有考虑结构半径的变化，也没有考虑钢绞线排布的角度$ \alpha_i $的变化。也就是说，该理论不能考虑编织层受内压后，结构的几何变化。该理论仅考虑了钢绞线的拉伸刚度，扭转和弯曲的刚度皆为0。钢绞线体系轴向拉力$ T_\alpha $与单根钢丝轴线拉力$ T_i $的关系为：
-\begin{equation}
-T_\alpha = T_i \cos{\alpha_i}
-\end{equation}
-
-1951年，\citeauthor{hruska1951calculation}也给出了单位长度径向力$ F_{RU} $与钢绞线拉力$ T $、钢丝曲率半径$ \rho $关系的表达式，如式\ref{eq:Hruska}所示。该理论提出时仅作为实验得到的经验公式，后在\citeyear{machida1973}由\citeauthor{machida1973}给出证明。
-
-\begin{equation}\label{eq:Hruska}
-{F_{RU}} = \frac{T}{\rho }
-\end{equation}
-其中，钢丝的曲率半径可以由螺旋缠绕的结构参数表征
-\begin{equation}
-\rho  = \frac{R}{{{{\sin }^2}{\alpha _i}}}
-\end{equation}
-$ R_i $为钢绞线总体半径。
-
-
-1977年，\citeauthor{Entwistle1977}\cite{Entwistle1977}针对编织加强软管，提出了一套更为准确的理论假设。这套理论相对之前的理论，可以考虑缠绕层受内压荷载后，结构的几何变化。\citeauthor{Entwistle1977}对加强层几何变化的假设如图\ref{fig:assumption-deformed-geometry}所示，该理论不允许软管发生扭转，这是考虑到在该理论体系下编织层的扭转必须为0。
-
-加强层变形前后的半径为$ R_i $、$ R_i' $，缠绕角为$ \alpha_i$ 、 $\alpha_i' $，钢丝应变为$ \varepsilon_i $，之间的关系可以通过图\ref{fig:assumption-deformed-geometry}中的几何关系表示
-
-\begin{equation}
-\frac{{{R_i}'}}{{{R_i}}} = \left( {1 + {\varepsilon _i}} \right)\frac{{\sin {\alpha _i}'}}{{\sin {\alpha _i}}}
-\end{equation}
-
-\begin{figure}[!htbp]
+\begin{figure*}[!htp]
 	\centering
-		\includegraphics[width=0.7\linewidth]{figure/chap3/review/a}
-	\fcaption{加强层几何变化假设}{Assumption for the deformed reinforcement geometry}
-	\label{fig:assumption-deformed-geometry}
-\end{figure}
+	\includegraphics[width=0.5\linewidth]{figure/chap3/hypothesis}
+	\fcaption{验证纤维间不相对滑动假设}{}[纤维不滑动假设]
+	\label{fig:hypothesis}
+\end{figure*}
 
-1979年，\citeauthor{Knapp1979}\cite{Knapp1979}针对内芯可压缩的钢绞线结构进行了研究，采用了和\citeauthor{machida1973}（\citeyear{machida1973}）相似的手段，引入了扭转因子$ \gamma_i $（图\ref{fig:assumption-deformed-geometry}）,其表达式为：
+\section{基本理论}
+
+编织加强层的本构理论可以分为两个部分：1、刚度矩阵；2、编织角。编织层的刚度矩阵由编织角确定。而软管轴向受拉时，编织角会相应发生改变，则编织层的刚度也会发生改变，两者相互偶合。
+
+
+\subsection{确定特征单元}
+首先要去顶编织ceng层的特征单元，如图\ref{fig:unit}，为编织层中周期性出现的单元，根据假设3，纤维间间不发生相对滑动，编织角发生变化时，纤维除了自身弹性伸长外，只绕着节点转动。将节点间的饿纤维抽象为杆单元（bar element）,即为基本的特征单元。
+\begin{figure*}[!htp]
+\centering
+\includegraphics[width=0.9\linewidth]{figure/chap3/unit}
+\fcaption{确定基本特征单元}{definition of representative unit cell}
+\label{fig:unit}
+\end{figure*}
+
+
+
+
+\subsection{基本刚度矩阵}
+首先确定单层螺旋缠绕的刚度矩阵：取一个代表性体积单元，
+其在平面内的宏观应变为
+$ {\varepsilon _{ij}}\left( {i,j = 2,3} \right)$ ，
+根据基本假设各股金属纤维之间不发生相对滑动，可以认为金属纤维与特征单元变形协调，则方向为$  \vec{n} $的金属纤维向$ \lambda_f $应变为\cite{gaosiyang2009}:
+
+
+
+
+
+
+
 \begin{equation}
-{R_i}' = {R_i}\frac{{\left( {1 + {\varepsilon _i}} \right)\sin {\alpha _i}'}}{{\left( {1 + {\gamma _i}} \right)\sin {\alpha _i}}}
+{\lambda _f} = {\varepsilon _{ij}}{n_i}{n_j}
 \end{equation}
 
-这个分支下的研究，实际上还是围绕着加强结构中的钢丝本身，没有一个平均化的概念，所得的结果也是加强层中的某根钢丝与结构整体位移、扭转的关系。而且该系列理论主要研究的是缠绕加强，编织总是被简化为特殊的缠绕。编织远比缠绕来得复杂，很多复编织层特有的复杂关系、结构都被过度简化，也不能很好得融入该理论体系。
+其中，$ n_i\left( {i,j = 2,3} \right) $为金属纤维取向的方向余弦：
 
-\section{基于复合复合材料理论的研究}
+\begin{equation}
+\label{eq:fiber-strain}
+\left\{ {\begin{array}{*{20}{c}}
+	{{n_1} = \cos \alpha }\\
+	{{n_2} = \sin \alpha }
+	\end{array}} \right.
+\end{equation}
+
+$ E $为金属纤维弹性模量，则该去向金属纤维的应变能密度可以表示为：
+
+\begin{equation}
+{{W_f} = \int E {\lambda _f}d{\lambda _f} = \frac{1}{2}\sum {E{{\left( {{\lambda _f}} \right)}^2}} {V_f}}
+\end{equation}
+
+代入\ref{eq:fiber-strain}式，可得
+
+\begin{equation}
+{{W_f} = \frac{1}{2}\sum {E \cdot {n_i}{n_j}{n_k}{n_l}{\varepsilon _{ij}}{\varepsilon _{kl}}}  \cdot {V_f}\left( {i,j,k,l = 1,2} \right)}
+\end{equation}
+
+则单层金属纤维螺旋缠绕的宏观刚度张量为：
+
+\begin{equation}
+{{C_{f,ijkl}} = \frac{{{\partial ^2}{W_f}}}{{\partial {\varepsilon _{ij}}\partial {\varepsilon _{kl}}}} = \xi E \cdot {n_i}{n_j}{n_k}{n_l}}
+\end{equation}
+矩阵形式为：
+\begin{equation}\small
+{\hangjut{1}
+C_{ijkl}^{helix} = \left[ {\begin{array}{*{20}{c}}
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{\xi E \cdot {{\cos }^4}\alpha }&{\xi E \cdot {{\cos }^2}\alpha {{\sin }^2}\alpha }&0&{\rm{0}}&{\xi E \cdot {{\cos }^3}\alpha \sin \alpha }\\
+	{\rm{0}}&{\xi E \cdot {{\sin }^2}\alpha {{\cos }^2}\alpha }&{\xi E \cdot {{\sin }^4}\alpha }&0&{\rm{0}}&{\xi E \cdot \cos \alpha {{\sin }^3}\alpha }\\
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{\xi E \cdot {{\cos }^3}\alpha \sin \alpha }&{\xi E \cdot \cos \alpha {{\sin }^3}\alpha }&{\rm{0}}&{\rm{0}}&{\xi E \cdot {{\sin }^2}\alpha {{\cos }^2}\alpha }
+	\end{array}} \right]
+}
+\end{equation}
+
+其中，$  \xi $为覆盖系数，叠加两层编织角分别为$  + \alpha  $ ， $- \alpha  $ 的缠绕层的刚度矩阵，即可得到相应编织层的刚度矩阵，
+\begin{equation}\small
+{\hangjut{1}
+C_{ijkl}^{braid} = \left[ {\begin{array}{*{20}{c}}
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{2\xi E \cdot {{\cos }^4}\alpha }&{2\xi E \cdot {{\cos }^2}\alpha {{\sin }^2}\alpha }&0&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{2\xi E \cdot {{\sin }^2}\alpha {{\cos }^2}\alpha }&{2\xi E \cdot {{\sin }^4}\alpha }&0&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}&{\rm{0}}\\
+	{\rm{0}}&0&0&{\rm{0}}&{\rm{0}}&{2\xi E \cdot {{\sin }^2}\alpha {{\cos }^2}\alpha }
+	\end{array}} \right]
+}
+\end{equation}
+
+
+\subsection{基础编织角理论}
+
+特征单元得到轴向应变$  \varepsilon_{22} $与编织角的关系
+
+\begin{figure*}[!htp]
+	\centering
+	\subfigure[]{
+		\includegraphics[height=0.25\textheight]{figure/chap5/unit-cell-2}}
+	\hspace{0.5cm}
+	\subfigure[]{\includegraphics[height=0.2\textheight]{figure/chap5/unit-cell-1}}
+	\fcaption{基本理论特征单元}{basic representative unit cell}
+	\label{fig:unit-cell-2}
+\end{figure*}
+
+根据特征单元编织角变化的几何关系，可得
+\begin{equation}
+d\alpha  = \frac{{{\varepsilon _{22}}\sin \alpha \cos \alpha }}{{1 + {\varepsilon _{22}}{{\cos }^2}\alpha }}_{}
+\end{equation}
+其中， $ \varepsilon_22= dp/p $。特征单元纤维伸长量$ \varepsilon_f $，
+
+
+\begin{equation}
+{\varepsilon _f} = \sqrt {\frac{{{{\left( {{\varepsilon _{22}} + 1} \right)}^2} + \tan {\alpha ^2}}}{{1 + \tan {\alpha ^2}}}}  - 1
+\end{equation}
+
+编织加强层受到荷载后长度$ L $与直径$ D $都会发生相应的变化，根据钢绞线理论可以得到编织层初始长度、直径、编织角与加载后长度$ {L_0} $、直径$ {D_0} $与编织角$ {\alpha _0} $间的关系。
+\begin{equation}
+D = {D_0}\frac{{\sin \left( {\frac{\beta }{2}} \right)}}{{\sin \left( {\frac{{{\beta _0}}}{2}} \right)}} = D\frac{{\sin \left( \alpha  \right)}}{{\sin \left( {{\alpha _0}} \right)}}
+\end{equation}
+
+\begin{equation}
+L = {L_0}\frac{{\cos \left( {\frac{\beta }{2}} \right)}}{{\cos \left( {\frac{{{\beta _0}}}{2}} \right)}} = {L_0}\frac{{\cos \left( \alpha  \right)}}{{\cos \left( {{\alpha _0}} \right)}}
+\end{equation}
+
+
+\subsection{编织角锁定假设}
+
+\hacite 对软管组件进行了拉伸实验，同时根据其理论模型给出了数值仿真计算结果，对比拉伸实验的力位移曲线，如\ref{fig:hachemi-chap3}所示，
+
+\begin{figure}[!htp]
+	\centering
+	\subfigure[]{
+		\includegraphics[height=0.2\textheight]{figure/chap1/hachemi}
+		\label{fig:hachemi-chap3}
+	}
+	\hspace{1cm}
+	\subfigure[]{
+		\includegraphics[height=0.19\textheight]{figure/chap1/hachemi-test}
+		\label{fig:hachemi-test-chap3}
+	}
+	\subfigure[]{
+		\includegraphics[width=0.7\linewidth]{figure/chap3/lock-hypo}
+		\label{fig:gap-lockgap-lock}
+	}
+	
+	\fcaption{\ha 拉伸试验}{\ha tensile experiment}
+\end{figure}
+
+尽管力位移曲线整体趋势一致，但在非线性段并不能很好的吻合。\ha 给出了编织角锁定假设来解释这一现象。编织层纤维间的空隙面积为$ S $（如图\ref{fig:gap-lockgap-lock}所示），当$ S = 0 $时，可以求得锁定编织角$ \alpha_c $：
+
+\begin{equation}
+{\alpha _c} = \frac{1}{2} \cdot \arcsin \left( {\frac{W}{l}} \right)
+\end{equation}
+
+其中，$ W $为一股纤维的宽度，$ l  $为特征单元沿纤维方向的长度。
+以上为\ha 模型的基本内容。
+
+
+
+
+
+\section{编织加强层有限元仿真方法}
+
+研究编织层本构的很大一部分目的是为了能够利用有限元软件对软管组件进行数值仿真实验，以减小编织层设计阶段对实验的依赖。同时，数值仿真的结果也能结合实验，验证得到的本构模型是否合理。因此数值仿真也是本研究的重点内容之一。
+
+本研究有限元仿真采用的是通用有限元软件\aba ，因其具备较强的用户二次开发本构关系的接口。下面对\aba 软件进行简要的介绍。
+
+
+\subsection{\aba 软件及\uma 介绍}
+    ABAQUS由美国HKS公司研制开发，是目前世界上最流行、最先进、功能
+最强大的大型通用商业有限元软件之一。ABAQUS自1997年进入我国以来就受到极大地关注，越来越多的国内高校、科研单位以及企业采用它作为科学研究和产品研发的工具。
+
+
+ABAQUS可以进行结构静力、动力分析，拥有丰富的材料模型库、单元库
+以及良好的扩展功能，能够模拟各种常见工程材料的性能，如金属、钢筋混凝土、土壤、岩石、橡胶、高分子材料、复合材料和可压缩超弹性泡沫材料等。同时，ABAQUs具有强大的非线性计算能力，可以进行几何非线性计算。ABAQUS/Standard在计算几何非线性问题时，采用的正是U.L.法。对于实体单元来说，无论采用内置的还是用户自定义的本构模型，ABAQUS/Standard均采用Jaumann应力率。
+
+
+    ABAQUS为了方便和鼓励用户开发自己研究或感兴趣的材料模型，通过
+FORTRAN语言接口，为用户提供了若干用户子程序（User Subroutines）和在编程时可以调用的实用程序（Utility Routines），以便用户自行定义符合自己所研究问题的模型。在ABAQUS提供的用户子程序中，与开发用户自定义材料的本构模型直接相关的是\uma 。通过ABAQUS主求解程序的接口，\uma 可以实现与ABAQUS的数据交流。
+    \uma 的功能非常强大，使用\uma 子程序可实现下列功能\cite{lijinzhu2011}：
+ \begin{compactenum}
+\item 定义ABAQUS材料库中没有包含的材料的本构模型，进行有限元计算，
+ 	    以扩充程序功能。
+\item 用于包含力学行为的任意分析过程将用尸自定义的材料属性赋给
+ 	    ABAQUS计算模型中的任何单元。
+\item 在计算中定义、使用、输出与求解相关的状态变量(Solution Dependent
+ 	    Variable，简称SDV )，便于追踪计算过程。
+\item 可以和多个用尸子程序如USDFLD. \uma HT等)联合使用，并且
+ 	    共享SDV空间。
+ \end{compactenum}
+
+\subsection{\uma 实现方法}
+
+按照\aba 用尸一子程序的约定，\uma 子程序需要定义单元积分点的材料刚度系数矩阵（ Jacobian矩阵），并完成应力、应变以及求解状态变量的更新。
+调用UMAT用户子程序进行分析的流程如图\ref{fig:umat-diaoyong}所示。
+\begin{figure*}[!htp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figure/chap3/umat-diaoyong}
+	\fcaption{调用UMAT用户子程序流程}{}
+	\label{fig:umat-diaoyong}
+\end{figure*}
+
+
+根据ABAQUS的非线性增量加载方法与平衡迭代求解方法。ABAQUS如果在运行过程中发现用户子程序\uma 的存在，它将在每一个增量加载步初始时刻，在模型的每一个计算单元中的材料积分点上调用用尸子程序UMAT，并根据用户程序代码计算刚度系数矩阵$ \bm{D} $，然后形成刚度矩阵一$ \bm{K} $，并由刚度矩阵$ \bm{K} $和当前增量步的荷载增量$ \bm{\Delta R} $ 求解位移增量$ \bm{\Delta U} $，然后进行平衡校核。如果平衡校核不满足默认误差或用户指定的误差，\aba 将继续进行平衡迭代，直到达到收敛要求，然后进入下一增量步的求解。
+
+\aba 的用户子程序主体结构至少应包括以下六个部分：
+\begin{inparaenum}[(1)]
+\item ABAQUS约定的子程序题名说明；
+\item  ABAQUS定义的参数说明表；
+\item 开发者定义的局部变量说明表；
+\item 开发者编写的程序代码段；
+\item 子程序返回语句；
+\item 结束语句。
+\end{inparaenum}   
+
+
+%\subsection{编织层算例}
+%
+%\subsubsection{几何模型}
+%
+%\subsubsection{仿真结果}
 
 
 
@@ -108,34 +279,3 @@ $ R_i $为钢绞线总体半径。
 
 
 
-
-
-
-
-
-
-\section{数值解法的发展}
-
-
-
-
-\section{拉伸实验与软管}
-
-
-很早就有学者用拉伸实验开始研究纤维加强层。\citeauthor{brunnschweiler19545}\cite{brunnschweiler19545}用拉伸试验机对不同编织角的的编织层进行了测试。他们发现使得编织结构失效的拉伸量，至少是编织层所用纤维失效拉伸量的$ 150\% $以上。单位面积内的股数与编织层失效拉伸量正相关，同样也与初始编织角相关。
-
-
-\cite{Hajrasouliha1}
-
-
-
-\citeauthor{Leung2013}\cite{Leung2013}
-
-
-采用了双镜头显微摄像仪（stereomicroscope）以及数字图像修正技术（digital image correlation，DIC）研究了拉伸实验，扫描了复合材料编织层表面的三维模型，记录了拉伸时表面的型位移场、编织角，研究了复合材料加强硬管拉伸时的编织角变化和基体裂纹的生长。
-
-\citeauthor{Harte20001259}\cite{Harte20001259,Harte2000259}研究了符合材料编织层拉伸时的力学行为和颈缩现象。他们也利用层合板理论预测了编织层的弹性模量。他们同时也提出：编织结构能非常有效的吸收能量，在拉伸过程中，编织层发生较大的拉伸应变时，纤维上的拉伸应变是恒定值。
-
-
-
-\section{本文研究思路}

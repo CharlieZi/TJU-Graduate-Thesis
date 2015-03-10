@@ -5,13 +5,13 @@
 %% Encoding: UTF-8
 %%==================================================
 
-\chapter{软管组件概述}
+\chapter{软管组件的结构及参数}
 \section{引~言}
 软管组件经过了几十年的发展演进，经过了大量的研究和实践，已经形成了一系列设计使用的规范。本文第一章已经对软管组件的行业发展进行了简要的介绍，本章着重介绍软管组件的结构，以及加强层理论发展。
 
 \section{软管组件结构}
-软管组件，承压能力相对较强，远超普通胶管；结构如图\ref{fig:hose structure}所示，
-由内管、加强层、金属连接件组成。根据不同的使用环境一般还有不同种类的的保护层。
+软管组件，承压能力相对较强，远超普通胶管；结构如图\ref{fig:hose structure-1}所示，
+由内管、加强层、金属连接件组成。根据不同的使用环境一般还有不同种类的保护层。
 
 
 
@@ -110,7 +110,7 @@
 	\label{fig:braider}
 \end{figure}	
 
-加强层是软管组价主要的承力结构，主要有编织和缠绕两种加强形式。对比两种加强层形式，各有优缺点。
+加强层是软管组件主要的承力结构，主要有编织和缠绕两种加强形式。对比两种加强层形式，各有优缺点。
 
 缠绕层一般成对出现。所谓“成对”是指，缠绕加强时，不能只沿顺时针或逆时针方向缠绕，而必须反向的两层一组，来保持结构的受力平衡。
 缠绕层中，金属纤维贴靠更为紧密，因而可以耐受更高的内压荷载，同时与内管贴合更好，不容易损伤内管。
@@ -129,7 +129,7 @@
 	\hspace{1cm}
 	\subfigure[]{
 		\includegraphics[width=0.3\linewidth]{figure/chap3/Hose/helix-wounder}\label{fig:helix-wounder}}
-	\fcaption{占位图}{place holder}
+	\fcaption{缠绕机}{ Helix-wounding Machine}
 	\label{fig:helix-tube}
 \end{figure}
 
@@ -141,26 +141,26 @@
 
 	
 	
-\subsection{金属连接件}
-	\begin{asparaenum}
-		\item 扣压式\\
-		依靠接头公装的塑性变形和摩擦力形成有效连接。
-		\item 分离式\\
-		编织层覆盖系数小于缠绕曾，结构稳定，弯曲性能稳定，不会松散。
-		
-		\ref{fig:placeholder}
-		\ref{fig:placeholder:a}
-		\begin{figure}[!htbp]
-			\centering
-			\subfigure[]{\label{fig:placeholder:a}
-				\includegraphics[width=0.4\linewidth]{figure/placeholder}}
-			\hspace{1cm}
-			\subfigure[]{
-				\includegraphics[width=0.4\linewidth]{figure/placeholder}}
-			\fcaption{占位图}{placeHolder}
-			\label{fig:placeholder}
-		\end{figure}
-	\end{asparaenum}	
+%\subsection{金属连接件}
+%	\begin{asparaenum}
+%		\item 扣压式\\
+%		依靠接头公装的塑性变形和摩擦力形成有效连接。
+%		\item 分离式\\
+%		编织层覆盖系数小于缠绕曾，结构稳定，弯曲性能稳定，不会松散。
+%		
+%		\ref{fig:placeholder}
+%		\ref{fig:placeholder:a}
+%		\begin{figure}[!htbp]
+%			\centering
+%			\subfigure[]{\label{fig:placeholder:a}
+%				\includegraphics[width=0.4\linewidth]{figure/placeholder}}
+%			\hspace{1cm}
+%			\subfigure[]{
+%				\includegraphics[width=0.4\linewidth]{figure/placeholder}}
+%			\fcaption{占位图}{placeHolder}
+%			\label{fig:placeholder}
+%		\end{figure}
+%	\end{asparaenum}	
 	
 
 
@@ -217,7 +217,8 @@
 
 空隙DEF区域面积$ S_{DEF} $为：
 \begin{equation}
-\frac{1}{2}{\left( {\frac{{2\pi D}}{{{N_S}}} - 2\frac{W}{{2\cos \alpha }}} \right)^2}\frac{1}{{\tan \alpha }}
+\label{eq:area-of-gaps}
+S_{DEF}=\frac{1}{2}{\left( {\frac{{2\pi D}}{{{N_S}}} - 2\frac{W}{{2\cos \alpha }}} \right)^2}\frac{1}{{\tan \alpha }}
 \end{equation}
 
 
@@ -249,13 +250,14 @@
 
 
 \begin{equation}
-\xi_{section}= \frac{{{N_S}{N_W}\frac{{{\phi ^2}}}{{\cos \alpha }}}}{{{D^2} - {{\left( {D - \tau \phi } \right)}^2}}} = \frac{{{N_S}{N_W}\phi }}{{2\tau  \cdot \cos \alpha (D - \frac{\tau }{2}\phi )}}
+\label{eq:section-epsilon}
+{\xi _{section}} = \frac{{{N_S}{N_W}\frac{{{\phi ^2}}}{{\cos \alpha }}}}{{{D^2} - {{\left( {D - \tau \phi } \right)}^2}}} = \frac{{{N_S}{N_W}\phi }}{{\tau  \cdot \cos \alpha (2D - \tau \phi )}}
 \end{equation}
 
 由于$ \tau $值很难确定，工业中一般选择将侧向编织密度$ \xi_{lateral} $作为定义软管组件编织层编织密度的方法。
 
 
-\subsection{编织层数}
+%\subsection{编织层数}
 
 
 
@@ -284,17 +286,17 @@
 为了保证软管组件安全工作，美国、欧洲和国际标准都规定了一下几个重要的实验：
 \begin{compactenum}
 	\item 爆破实验\\
-	以一定的升压速率，增加内压，直到软管组件发生渗漏、接头发生脱头或者管体破裂。以此时的压力值为软管组价的最小爆破压力。
+	以一定的升压速率，增加内压，直到软管组件发生渗漏、接头发生脱头或者管体破裂。以此时的压力值为软管组件的最小爆破压力。
 	
-	\begin{figure}[!htbp]
-		\centering
-		\subfigure[]{
-			\includegraphics[width=0.4\linewidth]{figure/placeholder}}
-		\subfigure[]{
-			\includegraphics[width=0.4\linewidth]{figure/placeholder}}
-		\fcaption{占位图}{place holder}
-		\label{fig:placeholder}
-	\end{figure}
+%	\begin{figure}[!htbp]
+%		\centering
+%		\subfigure[]{
+%			\includegraphics[width=0.4\linewidth]{figure/placeholder}}
+%		\subfigure[]{
+%			\includegraphics[width=0.4\linewidth]{figure/placeholder}}
+%		\fcaption{占位图}{place holder}
+%		\label{fig:placeholder}
+%	\end{figure}
 	
 	\item 试验压力\\
 	软管耐压试验使用的压力,通常是额定压力的2倍
