@@ -75,12 +75,12 @@
 
 \begin{figure}
 	\centering
-	\subfigure[软管失效]{
+	\subfigure{
 		\includegraphics[width=0.3\textwidth]{figure/chap1/burst-hose-1}}
 	\hspace{1cm}
-	\subfigure[软管失效]{
+	\subfigure{
 		\includegraphics[width=0.5\textwidth]{figure/chap1/burst-hose-2}}
-	\fcaption{软管失效}{hose fail}
+	\fcaption{软管失效形式}{ Failure Modes of Hose Assembly}
 	\label{fig:hose fail}
 \end{figure}
 
@@ -121,7 +121,7 @@
 	\hspace{0.5cm}
 	\subfigure{
 		\includegraphics[width=0.3\textwidth]{figure/chap1/hose2}}
-	\fcaption{软管组件}{Hose Assembly}  
+	\fcaption{常见软管组件}{Usual Forms of Hose Assembly}  
 	\label{fig:hose}
 \end{figure}
 
@@ -274,7 +274,7 @@
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{figure/chap1/helical-strands}
-	\fcaption{螺旋钢绞线}{Helical strands}  
+	\fcaption{螺旋绞线}{Helical Strands}  
 	\label{fig:helical-strands}
 \end{figure}
 
@@ -309,7 +309,7 @@ $ R_i $为钢绞线总体半径。
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.7\linewidth]{figure/chap3/review/a}
-	\fcaption{加强层几何变化假设}{Assumption for the deformed reinforcement geometry}
+	\fcaption{加强层几何变化假设}{Assumption of the deformation of  Reinforcement Layer}
 	\label{fig:assumption-deformed-geometry}
 \end{figure}
 
@@ -362,8 +362,8 @@ $ R_i $为钢绞线总体半径。
 		\includegraphics[height=0.2\textheight]{figure/chap1/fiber-inclinatino}
 		\label{fig:fiber-inclinatino}
 		}
-	\fcaption{编织织物复合材料模型}{hose fail}
-	\label{fig:hose fail}
+	\fcaption{编织织物复合材料理论模型}{Models of Braided Composites}
+	\label{fig:Models-of Braided-Composites}
 \end{figure}
 
 
@@ -402,13 +402,15 @@ $ R_i $为钢绞线总体半径。
 
 
 \section{研究思路}
+本研究源于课题《某型PTFE金属编织增强软管组件结构设计原理解析及数值分析》。主要的研究对象为：金属编织增强软管组件的加强层。
 
-
-通过前面的综述，可以发现，软管组件的两个理论体系并没有太多交集，各有侧重与优势，如表\ref{tab:hose-specimen}所示。
+  在研究过程中发现，加强层理论的两个分支都经过了数十年的发展，金属纤维缠绕加强，和包含树脂基体的非金属编织加强，这两种加强形式的本构已经形成较为成熟的理论\cite{Evans2002}。
+  
+ 但对于金属纤维编织加强，和无基体或柔性基体的非金属纤维编织加强，目前的理论不能很好的处理\cite{Reese2003}。对这类软管组件的研究，大多沿用钢绞线理论或复合材料理论。两个理论体系并没有太多交集，各有侧重与优势，如表\ref{tab:hose-specimen}所示。
 
 \begin{table}[!htb]
 	\centering
-	\tcaption{加强层理论体系的比较}{comparation of theories of reiforcement layers}
+	\tcaption{加强层理论体系的比较}{Comparation of Theories of Reiforcement Layers}
 	\label{tab:hose-specimen}
 	\begin{tabular*}{1.0\textwidth}{@{\extracolsep{\fill}}>{\hspace{0.5cm}}ccc}
 		\toprule
@@ -419,29 +421,29 @@ $ R_i $为钢绞线总体半径。
 		劣势   &     过度简化编织      & 不考虑过程中的结构变化 \\ \bottomrule
 	\end{tabular*} 
 \end{table}
-
-本研究源于课题《某型PTFE金属编织增强软管组件结构设计原理解析及数值分析》。
-  在研究过程中发现，加强层理论的两个分支都经过了数十年的发展，金属纤维缠绕加强，以及包含数值基体的非金属编织加强，这两种加强形式的本构已经有较为成熟精准的理论；剩下的金属纤维编织加强，以及无基体的非金属纤维编织加强，目前的理论不能很好的处理，因为这两种加强形式既包含复杂的纤维间相互作用，又包含了几何结构明显的变化。对比表\ref{tab:hose-specimen}中两个分支的优势与劣势，恰好需要把两个分支的优势结合起来，才能解决纤维编织加强层的本构问题。
+  
+ 金属纤维编织加强，和无基体非金属纤维编织加强，有明显的共同点，同时也是研究的难点所在：1.这两种加强形式既包含复杂的纤维间相互作用；2.包含了几何结构明显的变化。对照表\ref{tab:hose-specimen}中两个分支的优势与劣势，恰好需要把两个分支的优势结合起来，才能解决纤维编织加强层的本构问题。
+ 
+ 
   
 事实上，目前对纤维加强层的理论研究，已经开始有学者试图将这两个方向进行融合：
-\citeauthor{russia1970}\cite{russia1970}
-
 如\citeauthor{Reese2003}\cite{Reese2003}提出了考虑结构非线性变化的特征单元法；\citeauthor{Rattensperger2003}\cite{Rattensperger2003}利用这种考虑结构非线性的特征单元研究了编织层接头连接扣压的过程。
-
 有学者尝试用连续介质力学的基本理论推导编织层的本构，\citeauthor{Horgan2005}\cite{Horgan2005} 提出了纤维加强材料的应变能密度函数，
 国内学者计算了编织结构强度与突加荷载的情况\cite{renjiusheng2009}。
-
 \citeauthor{Wijaya2012}\cite{Wijaya2012}对包含软管各层材料及编织层的试件进行了压缩实验，认为金属编织层的应力应变关系是线性的，在软管整体动态特性的研究中取得了较好的效果。\citeauthor{Cho2005}\cite{Cho2005}研究了编织层在扣压安装接头中的力学行为，结合压缩实验提出了弹塑性的本构模型，\citeauthor{Rattensperger2003}\cite{Rattensperger2003}同样针对压缩的过程，编织层厚度方向引入一组等效非线性弹簧，表征金属纤维间相互作用。
 \cite{peirce19375,menges1976spannungs,kato1999formulation,schock1989some,hino1994evaluation}
 
+随着计算机技术的不断发展 ,出现了很多利用有限元计算编织复合材料宏观性能的方法,如\citeauthor{walrath1983losipescu}\cite{walrath1983losipescu}及\citeauthor{hexiaodong1992}\cite{hexiaodong1992}的有限元法,\citeauthor{whyte1986structure}的有限几何模型(FiniteGeometry Model)\cite{whyte1986structure}、有限体胞模型(Finite Cell Model)\cite{chen1999mechanical}、离散有限元素模型(Discrete Finite Element Model) \cite{whitcomb1991}，以及庞宝君\cite{pangbaojun2001}针对编织复合材料弹性模量及损伤研究的细观计算力学方法等。
+
+
 \subsection{Hachemi非线性拉伸模型}
 
-本文希望找到一种模型，可以统一纤维编织加强层的结构非线性，以及微观传力机制的复杂性。
+本文希望找到一种模型，可以统一纤维编织加强层的结构非线性，和编织结构微观传力机制的复杂性。
 \citeauthor{Hachemi2011}\cite{Hachemi2011}就提出这样一种模型：
 建立类似
  \citeauthor{ma_elastic_1986} “对角单元模型”\cite{ma_elastic_1986}的特征单元，单元可以发生大变形，变形的量则是通过钢绞线理论来确定。
  该理论通过特征单元，将编织层的管径，长度联系在一起，相互影响，产生了宏观的非线性力学行为。
- 这种将宏观管体的几何变化与特征单元中细观结构对整体力学行为分开处理的方法值得借鉴但是也较为繁琐，同时\ha 特征单元并未考虑很多对整体的非线性力学行为可能造成影响的因素，还有很大可以改进的空间。因此，本研究将采用这套理论作为研究编织层力学行为的基本构架，并对其进行修改和提升。
+
  
  \begin{figure*}[!htp]
  	\centering
@@ -454,8 +456,10 @@ $ R_i $为钢绞线总体半径。
  		\includegraphics[height=0.21\textheight]{figure/chap1/hachemi-test}
  		\label{fig:hachemi-test}
  	}
- 	\fcaption{\ha 拉伸试验}{\ha tensile experiment}
+ 	\fcaption{\ha(2011) 拉伸试验}{Hachemi(2011) tensile experiment}
  \end{figure*}
+ 
+  这种将宏观管体的几何变化与特征单元中细观结构对整体力学行为分开处理的方法值得借鉴但是也较为繁琐，同时\ha 特征单元并未考虑很多对整体的非线性力学行为可能造成影响的因素，还有很大可以改进的空间。因此，本研究将采用这套理论作为研究编织层力学行为的基本构架，并对其进行修改和提升。
  
 \citeauthor{Hachemi2011}的这套理论是通过力学万能试验机，对几组金属编织加强层进行了拉伸实验，来验证该模型的。如图\ref{fig:hachemi-test}所示。本研究首先利用较容易实现的拉伸实验验证该模型的有效性，进而发现对于本研究拉伸试验的试件，\ha 模型的非线性行为仍不够强烈。因此本研究开展了多次拉伸实验，围绕改进提升\ha 理论的目标开展研究工作。
 

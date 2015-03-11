@@ -268,14 +268,74 @@ FORTRAN语言接口，为用户提供了若干用户子程序（User Subroutines
 
 %\subsection{编织层算例}
 %
-%\subsubsection{几何模型}
-%
-%\subsubsection{仿真结果}
+\subsection{模型建立}
+
+建立有限元建模的方法体系，适当简化模型,使得在保证计算精度的情况下， 提高运算效率；同时适当的简化，合理的建模方法也是计算精度的保证，避免了 机器误差在计算工程中累积。
+
+由于软管组件与接头的接触非常复杂（如图\ref{fig:coupling}所示），但不会对拉伸实验的仿真有很大的影响。证 据是，实验中的金属纤维层一般在接头处发生脆断（见第四章内容），而非逐渐拉脱。因此几何模型需要对接头进行简化，以减少计算量。如图\ref{fig:periodic-sym-2}所示，可以采用固支的边界条件简化接头，并进一步采用周期对称的手段简化拉伸实验的有限元模型，如图\ref{fig:periodic-sym-3}所示。
+
+
+\begin{figure*}[!htp]
+\centering
+\subfigure[接头几何模型]{
+\includegraphics[width=0.4\linewidth]{figure/chap3/FEM/coupling}\label{fig:coupling}
+}
+\subfigure[模型简化]{
+	\includegraphics[width=0.3\linewidth]{figure/chap3/FEM/periodic-sym-2}
+	\label{fig:periodic-sym-2}
+}
+\subfigure[周期对称模型]{
+	\includegraphics[width=0.2\linewidth]{figure/chap3/FEM/periodic-sym}
+	\label{fig:periodic-sym-3}
+}
+\fcaption{几何模型简化}{Geometry Simplification}
+\end{figure*}
 
 
 
 
 
+而在软管施加内压荷载的有限元模型中，建立完整的模型的方法更为通用。建立的模型如图\ref{fig:whole-m-2}所示。模型中内管与编织层之间为Tie接触（完全粘连，不发生相对位移），因为金属纤维的编织层再生产时会施加预紧力，金属纤维会在质地相对较软的内管形成较深的压痕，内管和编织层很难发生相对滑动。
+
+\begin{figure*}[!htp]
+\centering
+\subfigure[接触关系]{
+	\includegraphics[width=0.45\linewidth]{figure/chap3/FEM/whole-m}
+}
+\hspace{0.5cm}
+\subfigure[荷载施加]{
+	\includegraphics[width=0.25\linewidth]{figure/chap3/FEM/whole-m-2}
+}
+\fcaption{完整模型}{Full FEM Model}
+\label{fig:whole-m-2}
+\end{figure*}
+
+但是值得注意的是，非金属纤维由于纤维直径较小，不容易在内管上产生压痕，因此很容易发生相对滑动。有限元针对非金属纤维编织层建模时需要考虑这种接触关系的影响。
+
+\subsection{仿真结果}
+
+简化几何模型，建立有限元模型，并导入\uma 子程序接口后，\aba 就能进行自定义本构模型的求解了。有限元结果大致如\ref{fig:results-2}所示，具体的数值分析，以及针对仿真结果进行的理论修正，将在后面的章节进行介绍。
+\begin{figure*}[!htp]
+\centering
+\subfigure{
+	\includegraphics[width=0.3\linewidth]{figure/chap3/FEM/results}
+}
+\hspace{0.5cm}
+\subfigure{
+	\includegraphics[width=0.38\linewidth]{figure/chap3/FEM/results-2}
+}
+\fcaption{仿真结果}{FEM Simulation Results}
+\label{fig:results-2}
+\end{figure*}
+
+
+\section{小 ~ 结}
+
+本章主要总结介绍了\ha 对于编织加强层提出的理论，给出了具体的理论推导过程。明确了该理论的框架，包括了3条基本假设，编织角理论，以及平均化刚度矩阵理论。编织角理论体现了钢绞线理论的内核，反映了编织层在拉伸过程中的“几何非线性”；刚度矩阵理论基于对特征单元的分析，但\ha 并没有进行深入的研究。
+
+本章还讨论了\ha 在其拉伸实验中提出的“锁定叫假设”，而该假设将作为本研究实验的一个需要重点关注的对象。
+
+此外，本章还对该理论体系下的仿真方法进行了探索，介绍了基于\uma 二次开发本构关系的方法。
 
 
 

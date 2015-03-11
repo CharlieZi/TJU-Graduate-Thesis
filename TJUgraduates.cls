@@ -621,7 +621,7 @@
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
-    
+
 \newtheoremstyle{break}% name
   {}%      Space above, empty = `usual value'
   {}%      Space below
@@ -631,6 +631,7 @@
   {.}%        Punctuation after thm head
   {\newline}% Space after thm head: \newline = linebreak
   {}%         Thm head spec
+
 \endinput
 
 %%
