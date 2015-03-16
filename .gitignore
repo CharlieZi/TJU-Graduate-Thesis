@@ -60,3 +60,7 @@ app/app_log.aux
 frontmatter/symbol.aux
 
 frontmatter/table.aux
+
+*.aux
+
+*.aux

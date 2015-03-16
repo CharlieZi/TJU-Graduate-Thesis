@@ -478,17 +478,17 @@
 \else
   % 研究生学位论文正文页眉页脚，针对openright和openany单独设置
   \if@openright
-    \fancyhead[LO, RE]{\small {\tju@value@school     ~    \tju@value@degree\tju@label@thesis}}
+    \fancyhead[LE]{\small {\tju@value@school   ~     \tju@value@degree\tju@label@thesis}}
     \fancyhead[RO]{\small {\leftmark}}
-    \fancyhead[LE]{\small {\tju@value@titlemark}}
     \fancyfoot[C]{\small {\thepage}}
     % 研究生学位论文开章页页眉页脚
     \fancypagestyle{plain} {
-      \fancyhf{}
-      \fancyhead[LO,RE]{\small {\tju@value@school\tju@value@degree\tju@label@thesis}}
-      \fancyhead[RO]{\small {\leftmark}}
-      \fancyhead[LE]{\small {\tju@value@titlemark}}
-      \fancyfoot[C]{\small {\thepage}}
+    	\fancyhf{}
+    	\fancyhead[L]{
+    		\small {\tju@value@school\tju@value@degree\tju@label@thesis}}
+    	\fancyhead[R]{\small {\leftmark}}
+    	% \fancyhead[L]{\small {\tju@value@titlemark}}
+    	\fancyfoot[C]{\small {\thepage}}
     }
   \else
     \fancyhead[LO]{\small {\tju@value@school   ~     \tju@value@degree\tju@label@thesis}}
