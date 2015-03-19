@@ -549,28 +549,52 @@
 	      \endlist}
 
     
-\newenvironment{publications}[1]
-     {\chapter{\tju@label@publications}%
-      \@mkboth{\MakeUppercase\tju@label@publications}
-              {\MakeUppercase\tju@label@publications}%
-      {
-      	\list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}
-        }%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `publications' environment}}%
-      \endlist}
+%\newenvironment{publications}[1]
+%     {\chapter{\tju@label@publications}%
+%      \@mkboth{\MakeUppercase\tju@label@publications}
+%              {\MakeUppercase\tju@label@publications}%
+%      {
+%      	\list{\@biblabel{\@arabic\c@enumiv}}%
+%           {\settowidth\labelwidth{\@biblabel{#1}}%
+%            \leftmargin\labelwidth
+%            \advance\leftmargin\labelsep
+%            \@openbib@code
+%            \usecounter{enumiv}%
+%            \let\p@enumiv\@empty
+%            \renewcommand\theenumiv{\@arabic\c@enumiv}}
+%        }%
+%      \sloppy
+%      \clubpenalty4000
+%      \@clubpenalty \clubpenalty
+%      \widowpenalty4000%
+%      \sfcode`\.\@m}
+%     {\def\@noitemerr
+%       {\@latex@warning{Empty `publications' environment}}%
+%      \endlist}
+    
+    \newenvironment{publications}[1]
+    {\chapter{\tju@label@publications}%
+    	\@mkboth{\MakeUppercase\tju@label@publications}
+    	{\MakeUppercase\tju@label@publications}%
+    	{\textbf{已发表论文\LARGE}}
+    	\list{\@biblabel{\@arabic\c@enumiv}}%
+    	{\settowidth\labelwidth{\@biblabel{#1}}%
+    		\leftmargin\labelwidth
+    		\advance\leftmargin\labelsep
+    		\@openbib@code
+    		\usecounter{enumiv}%
+    		\let\p@enumiv\@empty
+    		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    	\sloppy
+    	\clubpenalty4000
+    	\@clubpenalty \clubpenalty
+    	\widowpenalty4000%
+    	\sfcode`\.\@m}
+    {\def\@noitemerr
+    	{\@latex@warning{Empty `publications' environment}}%
+    	\endlist}
+    
+    
 
 \newenvironment{projects}[1]
      {\chapter{\tju@label@projects}%
